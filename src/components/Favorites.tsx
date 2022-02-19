@@ -1,27 +1,25 @@
 import React from "react";
+import {TitleOfTable} from "./TitleOfTable";
 
 type favoritesPropsType = {
     favoriteBooks: Array<string>
     deleteBookFromFavorites: (name: string) => void
     clearFavorites: () => void
 }
-export const Favorites = React.memo(({favoriteBooks,
+export const Favorites = React.memo(({
+                                         favoriteBooks,
                                          deleteBookFromFavorites,
-                                         clearFavorites}: favoritesPropsType) => {
+                                         clearFavorites
+                                     }: favoritesPropsType) => {
 
     return (
         <div>
-            <p>list of favorite books</p>
-            {favoriteBooks.map(m => {
-                return (
-
-                    <div>{m}
-                        <button onClick={() => deleteBookFromFavorites(m)}> x</button>
-                    </div>
-
-
-                )
-            })}
+            <TitleOfTable title={'List of favorite books:'}/>
+            {favoriteBooks.map(m =>
+                <div>{m}
+                    <button onClick={() => deleteBookFromFavorites(m)}> x</button>
+                </div>
+            )}
             <button onClick={clearFavorites}>Clear all</button>
         </div>
     )
