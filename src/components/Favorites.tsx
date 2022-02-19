@@ -5,7 +5,10 @@ type favoritesPropsType = {
     deleteBookFromFavorites: (name: string) => void
     clearFavorites: () => void
 }
-export const Favorites = ({favoriteBooks, deleteBookFromFavorites, clearFavorites}: favoritesPropsType) => {
+export const Favorites = React.memo(({favoriteBooks,
+                                         deleteBookFromFavorites,
+                                         clearFavorites}: favoritesPropsType) => {
+
     return (
         <div>
             <p>list of favorite books</p>
@@ -22,4 +25,4 @@ export const Favorites = ({favoriteBooks, deleteBookFromFavorites, clearFavorite
             <button onClick={clearFavorites}>Clear all</button>
         </div>
     )
-}
+})

@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from "react";
+import React, {ChangeEvent, useState, KeyboardEvent} from "react";
 
 
 type propsType = {
@@ -6,7 +6,7 @@ type propsType = {
     callback: (title: string) => void
 }
 
-export const UniversalAddingForm = (props: propsType) => {
+export const UniversalAddingForm = React.memo((props: propsType) => {
 
     const [title, setTitle] = useState<string>('')
 
@@ -15,16 +15,21 @@ export const UniversalAddingForm = (props: propsType) => {
     }
 
     const addItem =  () => {
-        if (title) {
+        if (title.trim()) {
             props.callback(title)
             setTitle('')
+        }
+    }
+    const onEnterPressHandler = (e: KeyboardEvent<HTMLInputElement>) =>{
+        if(e.key === 'Enter') {
+            addItem()
         }
     }
 
     return (
         <>
-            <input value={title} onChange={onInputChangeHandler}/>
+            <input value={title} onChange={onInputChangeHandler} onKeyPress={onEnterPressHandler}/>
             <button onClick={addItem}>{props.buttonName}</button>
         </>
     )
-}
+})
