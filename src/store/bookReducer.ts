@@ -32,7 +32,7 @@ const initState:BookStateType = {
 export const bookReducer = (state: BookStateType = initState, action: GeneralTypeForBooksReducer): BookStateType => {
     switch (action.type) {
         case ACTIONS_TYPE.ADD_BOOK:
-            return {...state, books: [...state.books, {id: action.payload.id , title: action.payload.name,}]}
+            return {...state, books: [...state.books, {id: action.payload.name , title: action.payload.name,}]}
         case ACTIONS_TYPE.ADD_BOOK_TO_FAV:
             const copyFavoriteBooks = [...state.books.filter(f => f.id === action.payload.id), ...state.favoriteBooks]
             const uniqueBooks = unique(copyFavoriteBooks)

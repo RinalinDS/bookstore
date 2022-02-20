@@ -7,7 +7,6 @@ export enum ACTIONS_TYPE {
     CLEAR_FAVORITES = 'CLEAR_FAVORITES'
 }
 
-
 export type GeneralTypeForBooksReducer =
     addBookACType |
     addBookToFavoritesACType |
@@ -15,13 +14,10 @@ export type GeneralTypeForBooksReducer =
     clearFavoritesACType
 
 
-type addBookACType = {
-    type: ACTIONS_TYPE.ADD_BOOK
-    payload: {
-        name: string
-        id: string
-    }
-}
+type addBookACType = ReturnType<typeof addBookAC>
+type addBookToFavoritesACType = ReturnType<typeof addBookToFavoritesAC>
+type deleteBookFromFavoritesACType = ReturnType<typeof deleteBookFromFavoritesAC>
+type clearFavoritesACType = ReturnType<typeof clearFavoritesAC>
 
 export const addBookAC = (name: string) => {
     return {
@@ -30,47 +26,29 @@ export const addBookAC = (name: string) => {
             name,
             id: v1()
         }
-    }
+    } as const
 }
 
-type addBookToFavoritesACType = {
-    type: ACTIONS_TYPE.ADD_BOOK_TO_FAV
-    payload: {
-        id: string
-    }
-}
-
-export const addBookToFavoritesAC = (id:string):addBookToFavoritesACType => {
+export const addBookToFavoritesAC = (id: string) => {
     return {
         type: ACTIONS_TYPE.ADD_BOOK_TO_FAV,
         payload: {
             id
         }
-    }
+    } as const
 }
 
-type deleteBookFromFavoritesACType = {
-    type: ACTIONS_TYPE.DELETE_BOOK_FROM_FAV
-    payload: {
-        id: string
-    }
-}
-
-export const deleteBookFromFavoritesAC = (id: string):deleteBookFromFavoritesACType => {
+export const deleteBookFromFavoritesAC = (id: string) => {
     return {
         type: ACTIONS_TYPE.DELETE_BOOK_FROM_FAV,
         payload: {
             id
         }
-    }
+    } as const
 }
 
-type clearFavoritesACType = {
-    type: ACTIONS_TYPE.CLEAR_FAVORITES
-}
-
-export const clearFavoritesAC = ():clearFavoritesACType => {
+export const clearFavoritesAC = () => {
     return {
         type: ACTIONS_TYPE.CLEAR_FAVORITES,
-    }
+    } as const
 }
