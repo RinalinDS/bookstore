@@ -9,7 +9,6 @@ export enum ACTIONS_TYPE {
 export type GeneralTypeForBooksReducer =
     addBookACType |
     addBookToFavoritesACType |
-
     deleteBookFromFavoritesACType |
     clearFavoritesACType
 
@@ -66,7 +65,7 @@ type clearFavoritesACType = {
     type: ACTIONS_TYPE.CLEAR_FAVORITES
 }
 
-export const clearFavoritesAC = () => {
+export const clearFavoritesAC = ():clearFavoritesACType => {
     return {
         type: ACTIONS_TYPE.CLEAR_FAVORITES,
     }

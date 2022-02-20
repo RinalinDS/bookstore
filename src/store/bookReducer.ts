@@ -1,6 +1,6 @@
 import {ACTIONS_TYPE, GeneralTypeForBooksReducer} from "./bookReducerAC";
 
-type stateType = {
+export type BookStateType = {
     books: Array<string>
     favoriteBooks: Array<string>
 }
@@ -10,7 +10,7 @@ function unique(favoriteBooks: Array<string>): Array<string> {
     let result: Array<string> = [];
     for (let str of favoriteBooks) {
         if (!result.includes(str)) {
-            result.push(str);
+            result = [...result, str]
         }
     }
     return result;
@@ -23,7 +23,7 @@ const initState = {
 
 
 
-export const bookReducer = (state: stateType = initState, action: GeneralTypeForBooksReducer): stateType => {
+export const bookReducer = (state: BookStateType = initState, action: GeneralTypeForBooksReducer): BookStateType => {
     switch (action.type) {
         case ACTIONS_TYPE.ADD_BOOK:
             return {...state, books: [...state.books, action.payload.name]}
