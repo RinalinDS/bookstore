@@ -1,25 +1,23 @@
-import React from "react";
+
 import {bookReducer, BookStateType} from "../bookReducer";
 import {
-    ACTIONS_TYPE,
+
     addBookAC,
     addBookToFavoritesAC,
     clearFavoritesAC,
     deleteBookFromFavoritesAC
 } from "../bookReducerAC";
 
-let initState = {
+let initState = {} as BookStateType
 
-} as BookStateType
-
-beforeEach( ()=> {
+beforeEach(() => {
     initState = {
         books: ['Искатели Ветра', 'Ветер Полыни', 'Жнецы Ветра', 'Искра и Ветер'],
         favoriteBooks: []
     }
 })
 
-test('test should add proper book', ()=> {
+test(' should add proper book', () => {
 
     const endState = bookReducer(initState, addBookAC('Страж'))
 
@@ -29,7 +27,7 @@ test('test should add proper book', ()=> {
     expect(endState.books[4]).toBe('Страж')
 })
 
-test('test should add proper book to favorites', ()=> {
+test(' should add proper book to favorites', () => {
 
     const endState = bookReducer(initState, addBookToFavoritesAC('Ветер Полыни'))
 
@@ -41,7 +39,7 @@ test('test should add proper book to favorites', ()=> {
 })
 
 
-test('test should delete proper book from favorites', ()=> {
+test('should delete proper book from favorites', () => {
 
     initState = {
         books: ['Искатели Ветра', 'Ветер Полыни', 'Жнецы Ветра', 'Искра и Ветер'],
@@ -57,7 +55,7 @@ test('test should delete proper book from favorites', ()=> {
     expect(endState.favoriteBooks[0]).toBe('Жнецы Ветра')
 })
 
-test('test should delete all books from favorites', ()=> {
+test('should delete all books from favorites', () => {
 
     initState = {
         books: ['Искатели Ветра', 'Ветер Полыни', 'Жнецы Ветра', 'Искра и Ветер'],
