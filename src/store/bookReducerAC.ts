@@ -1,3 +1,5 @@
+import {v1} from "uuid";
+
 export enum ACTIONS_TYPE {
     ADD_BOOK = "ADD_BOOK",
     ADD_BOOK_TO_FAV = "ADD_BOOK_TO_FAV",
@@ -17,6 +19,7 @@ type addBookACType = {
     type: ACTIONS_TYPE.ADD_BOOK
     payload: {
         name: string
+        id: string
     }
 }
 
@@ -24,7 +27,8 @@ export const addBookAC = (name: string) => {
     return {
         type: ACTIONS_TYPE.ADD_BOOK,
         payload: {
-            name
+            name,
+            id: v1()
         }
     }
 }
@@ -32,15 +36,15 @@ export const addBookAC = (name: string) => {
 type addBookToFavoritesACType = {
     type: ACTIONS_TYPE.ADD_BOOK_TO_FAV
     payload: {
-        name: string
+        id: string
     }
 }
 
-export const addBookToFavoritesAC = (name: string) => {
+export const addBookToFavoritesAC = (id:string):addBookToFavoritesACType => {
     return {
         type: ACTIONS_TYPE.ADD_BOOK_TO_FAV,
         payload: {
-            name
+            id
         }
     }
 }
@@ -48,15 +52,15 @@ export const addBookToFavoritesAC = (name: string) => {
 type deleteBookFromFavoritesACType = {
     type: ACTIONS_TYPE.DELETE_BOOK_FROM_FAV
     payload: {
-        name: string
+        id: string
     }
 }
 
-export const deleteBookFromFavoritesAC = (name: string) => {
+export const deleteBookFromFavoritesAC = (id: string):deleteBookFromFavoritesACType => {
     return {
         type: ACTIONS_TYPE.DELETE_BOOK_FROM_FAV,
         payload: {
-            name
+            id
         }
     }
 }

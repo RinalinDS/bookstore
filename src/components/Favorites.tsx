@@ -1,9 +1,10 @@
 import React from "react";
 import {TitleOfTable} from "./TitleOfTable";
+import {BookType} from "../store/bookReducer";
 
 type favoritesPropsType = {
-    favoriteBooks: Array<string>
-    deleteBookFromFavorites: (name: string) => void
+    favoriteBooks: Array<BookType>
+    deleteBookFromFavorites: (id: string) => void
     clearFavorites: () => void
 }
 export const Favorites = React.memo(({
@@ -16,8 +17,8 @@ export const Favorites = React.memo(({
         <div>
             <TitleOfTable title={'List of favorite books:'}/>
             {favoriteBooks.map(m =>
-                <div>{m}
-                    <button onClick={() => deleteBookFromFavorites(m)}> x</button>
+                <div key={m.id}>{m.title}
+                    <button onClick={() => deleteBookFromFavorites(m.id)}> x</button>
                 </div>
             )}
             <button onClick={clearFavorites}>Clear all</button>

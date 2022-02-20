@@ -7,22 +7,23 @@ import {addBookAC, addBookToFavoritesAC, clearFavoritesAC, deleteBookFromFavorit
 import {AppRootStateType} from "./store/store";
 import {Books} from "./components/Books";
 import {TitleOfTable} from "./components/TitleOfTable";
+import {BookType} from "./store/bookReducer";
 
 export const App = React.memo(() => {
 
     const dispatch = useDispatch()
-    const books = useSelector<AppRootStateType, Array<string>>(state => state.books.books)
-    const favoriteBooks = useSelector<AppRootStateType, Array<string>>(state => state.books.favoriteBooks)
+    const books = useSelector<AppRootStateType, Array<BookType>>(state => state.books.books)
+    const favoriteBooks = useSelector<AppRootStateType, Array<BookType>>(state => state.books.favoriteBooks)
 
 
     const addBook = useCallback((title) => {
         dispatch(addBookAC(title))
     }, [dispatch])
-    const addBookToFavorites = useCallback((title: string) => {
-        dispatch(addBookToFavoritesAC(title))
+    const addBookToFavorites = useCallback((id: string) => {
+        dispatch(addBookToFavoritesAC(id))
     }, [dispatch])
-    const deleteBookFromFavorites = useCallback((title: string) => {
-        dispatch(deleteBookFromFavoritesAC(title))
+    const deleteBookFromFavorites = useCallback((id: string) => {
+        dispatch(deleteBookFromFavoritesAC(id))
     }, [dispatch])
     const clearFavorites = useCallback(() => {
         dispatch(clearFavoritesAC())
