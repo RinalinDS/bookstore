@@ -41,6 +41,8 @@ export const bookReducer = (state: BookStateType = initState, action: GeneralTyp
             return {...state, favoriteBooks: state.favoriteBooks.filter(f => f.id !== action.payload.id)}
         case ACTIONS_TYPE.CLEAR_FAVORITES :
             return {...state, favoriteBooks: []}
+        case ACTIONS_TYPE.CHANGE_BOOK_TITLE:
+            return {...state, books: state.books.map(m => m.id === action.payload.id? {...m, title: action.payload.title}: m)}
         default:
             return state
     }
