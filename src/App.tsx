@@ -8,6 +8,7 @@ import {AppRootStateType} from "./store/store";
 import {Books} from "./components/Books";
 import {TitleOfTable} from "./components/TitleOfTable";
 import {BookType} from "./store/bookReducer";
+import {Clock} from "./components/Clock";
 
 export const App = () => {
 
@@ -34,7 +35,9 @@ export const App = () => {
         <div className='app'>
             <div className='header'>header content</div>
             <div className='left'>content for left side</div>
-            <div className='topleft'>content for top left</div>
+            <div className='topleft'>
+                <Clock />
+            </div>
             <div className='logo'>
                 <TitleOfTable
                     title={'your books are here'}
