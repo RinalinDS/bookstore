@@ -9,6 +9,8 @@ import {Books} from "./components/Books";
 import {TitleOfTable} from "./components/TitleOfTable";
 import {BookType} from "./store/bookReducer";
 import {Clock} from "./components/Clock";
+import {Genre} from "./components/Genre";
+
 
 export const App = () => {
 
@@ -36,7 +38,7 @@ export const App = () => {
             <div className='header'>header content</div>
             <div className='left'>content for left side</div>
             <div className='topleft'>
-                <Clock />
+                <Clock/>
             </div>
             <div className='logo'>
                 <TitleOfTable
@@ -46,7 +48,6 @@ export const App = () => {
             <div className='main'>
                 <Books
                     title={'books'}
-                    books={books}
                     addBookToFavorites={addBookToFavorites}
                 />
 
@@ -54,16 +55,8 @@ export const App = () => {
                     buttonName={'add book to collection'}
                     callback={addBook}
                 />
-                <Books
-                    title={'genres'}
-                    books={[{id: '1', title: "Might and Magic"}, {id:'2', title:'Detekritiv'}]}
-                    addBookToFavorites={addBookToFavorites}
-                />
+                <Genre title={'Show books by genre'} books={books}/>
 
-                <UniversalAddingForm
-                    buttonName={'add book to collection'}
-                    callback={addBook}
-                />
 
             </div>
             <div className='favorites'>

@@ -7,6 +7,7 @@ interface propsType1 {
     id: string
     title: string
     callback: (id: string) => void
+
 }
 
 export const Book = (props: propsType1) => {

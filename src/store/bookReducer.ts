@@ -4,6 +4,7 @@ import {ACTIONS_TYPE, GeneralTypeForBooksReducer} from "./bookReducerAC";
 export type BookType = {
     id: string
     title: string
+    genre: string
 }
 
 export type BookStateType = {
@@ -23,7 +24,8 @@ function unique(favoriteBooks: Array<BookType>): Array<BookType> {
 }
 
 const initState:BookStateType = {
-    books: [{id: v1(), title:'Искатели Ветра'}, {id: v1(), title:'Ветер Полыни'}, {id: v1(), title:'Жнецы Ветра'}, {id: v1(), title:'Искра и Ветер'}],
+    books: [{id: v1(), title:'Искатели Ветра', genre: 'Fantasy'}, {id: v1(), title:'Ветер Полыни', genre: 'Fantasy'},
+        {id: v1(), title:'Жнецы Ветра' ,genre: 'Might and Magic'}, {id: v1(), title:'Искра и Ветер', genre: 'Might and Magic'}],
     favoriteBooks: []
 }
 
@@ -32,7 +34,7 @@ const initState:BookStateType = {
 export const bookReducer = (state: BookStateType = initState, action: GeneralTypeForBooksReducer): BookStateType => {
     switch (action.type) {
         case ACTIONS_TYPE.ADD_BOOK:
-            return {...state, books: [...state.books, {id: action.payload.name , title: action.payload.name,}]}
+            return {...state, books: [...state.books, {id: action.payload.name , title: action.payload.name, genre: 'New'}]}
         case ACTIONS_TYPE.ADD_BOOK_TO_FAV:
             const copyFavoriteBooks = [...state.books.filter(f => f.id === action.payload.id), ...state.favoriteBooks]
             const uniqueBooks = unique(copyFavoriteBooks)
