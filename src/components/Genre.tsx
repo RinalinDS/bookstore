@@ -1,14 +1,16 @@
 import React, {useState} from "react";
 import {TitleOfTable} from "./TitleOfTable";
 import {BookType} from "../store/bookReducer";
+import {useSelector} from 'react-redux';
+import {AppRootStateType} from '../store/store';
 
 
 type propsType = {
     title: string
-    books: BookType[]
 }
-export const Genre = React.memo(({title, books}: propsType) => {
+export const Genre = React.memo(({title}: propsType) => {
     const [genre, setGenre] = useState('All')
+    const books = useSelector<AppRootStateType, Array<BookType>>(state => state.books.books)
 
 
     return (
