@@ -21,6 +21,7 @@
 .header {
     grid-area: w;
     border: 1px solid black;
+    height: 60px;
 }
 
 .logo {
@@ -29,11 +30,9 @@
 }
 
 .main {
-
     padding: 5px;
     grid-area: c;
     border: 1px solid black;
-
 }
 
 .favorites {
