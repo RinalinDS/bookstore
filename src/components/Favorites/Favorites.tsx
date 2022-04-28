@@ -5,7 +5,7 @@ import {EditableSpan} from '../../common/EditableSpan';
 import {useDispatch} from 'react-redux';
 import {changeBookTitleAC} from '../../store/bookReducerAC';
 import Modal from '../../common/Modal/Modal';
-import s from './style/Favorites.module.css'
+import DeleteBookFromFavForm from '../../common/Modal/DeleteBookFromFavoritesForm/DeleteBookFromFavForm';
 
 type favoritesPropsType = {
   favoriteBooks: Array<BookType>
@@ -17,21 +17,28 @@ export const Favorites = React.memo(({
                                        deleteBookFromFavorites,
                                        clearFavorites
                                      }: favoritesPropsType) => {
-  const [isModalActive, setModalVisibility] = useState<boolean>(false)
+  const [whatModalIsActive, setWhatModalIsActive] = useState<string>('')
   const [tempId, setTempId] = useState('')
 
   const dispatch = useDispatch()
-  const changeBookTitle = useCallback((title: string, id: string) => {
+  const changeBookTitle = useCallback((title: string, id: string): void => {
     dispatch(changeBookTitleAC(id, title))
   }, [dispatch])
-  const onDeleteClickHandler = (id: string) => {
+  const onDeleteClickHandler = (id: string): void => {
     setTempId(id)
-    setModalVisibility(true)
+    setWhatModalIsActive('delete')
   }
-  const onConfirmDeleteClickHandler = () => {
+  const onConfirmDeleteClickHandler = (): void => {
     deleteBookFromFavorites(tempId)
     setTempId('')
-    setModalVisibility(false)
+    setWhatModalIsActive('')
+  }
+  const onDeleteAllClickHandler = (): void => {
+    setWhatModalIsActive('deleteAll')
+  }
+  const onConfirmDeleteAllClickHandler = (): void => {
+    clearFavorites()
+    setWhatModalIsActive('')
   }
 
 
@@ -46,15 +53,20 @@ export const Favorites = React.memo(({
           </button>
         </div>
       )}
-      <button onClick={clearFavorites}>Clear all</button>
-      {isModalActive && <Modal isModalActive={isModalActive} setModalVisibility={setModalVisibility}>
-        <div className={s.container}><span>Are you sure you wanna delete this book from favorites?</span>
-          <div className={s.btn_container}>
-            <button className={s.cancelButton} onClick={() => setModalVisibility(false)}>Cancel</button>
-            <button className={s.confirmButton} onClick={onConfirmDeleteClickHandler}>Yes</button>
-          </div>
-        </div>
-      </Modal> }
+
+      <button onClick={onDeleteAllClickHandler}>Clear all</button>
+      {whatModalIsActive === 'deleteAll' &&
+        <Modal isModalActive={whatModalIsActive} setModalVisibility={setWhatModalIsActive}>
+          <DeleteBookFromFavForm onConfirmDeleteClickHandler={onConfirmDeleteAllClickHandler}
+                                 setModalVisibility={setWhatModalIsActive}
+                                 text={'Are you sure you wanna clear favorites list?'}/>
+        </Modal>}
+      {whatModalIsActive === 'delete' &&
+        <Modal isModalActive={whatModalIsActive} setModalVisibility={setWhatModalIsActive}>
+          <DeleteBookFromFavForm onConfirmDeleteClickHandler={onConfirmDeleteClickHandler}
+                                 setModalVisibility={setWhatModalIsActive}
+                                 text={'Are you sure you wanna delete this book from favorites?'}/>
+        </Modal>}
     </div>
   )
 })
