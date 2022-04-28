@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {TitleOfTable} from "./TitleOfTable";
+import {TitleOfTable} from "../common/TitleOfTable";
 import {BookType} from "../store/bookReducer";
 import {useSelector} from 'react-redux';
 import {AppRootStateType} from '../store/store';

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Books} from './components/Books';
-import {UniversalAddingForm} from './components/UniversalAddingForm';
+import {UniversalAddingForm} from './common/UniversalAddingForm';
 
 type propsType = {
     addBookToFavorites: (id: string) => void

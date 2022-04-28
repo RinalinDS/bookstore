@@ -1,5 +1,5 @@
 import React, {useCallback} from "react";
-import {EditableSpan} from "./EditableSpan";
+import {EditableSpan} from "../common/EditableSpan";
 import {useDispatch} from "react-redux";
 import {changeBookTitleAC} from "../store/bookReducerAC";
 
