@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import {TitleOfTable} from "./common/TitleOfTable";
+import {TitleOfTable} from "./common/TitleOfTable/TitleOfTable";
 import {Clock} from "./common/Clock";
 import {Genre} from './components/Genre';
 import {Header} from './Header/Header';

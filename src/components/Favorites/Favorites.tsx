@@ -1,5 +1,5 @@
 import React, {useCallback, useState} from "react";
-import {TitleOfTable} from "../../common/TitleOfTable";
+import {TitleOfTable} from "../../common/TitleOfTable/TitleOfTable";
 import {BookType} from "../../store/bookReducer";
 import {EditableSpan} from '../../common/EditableSpan';
 import {useDispatch} from 'react-redux';
