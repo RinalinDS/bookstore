@@ -1,38 +1,30 @@
 import React from 'react';
-import './App.css';
-import {TitleOfTable} from "./common/TitleOfTable/TitleOfTable";
-import {Clock} from "./common/Clock";
-import {Genre} from './components/Genre';
-import {Header} from './Header/Header';
+import {Genre} from './components/Favorites/Genre/Genre';
 import {AppRoutesComponent} from './Routes/AppRoutesComponent';
+import {Header} from './Header/Header';
+import s from './App.module.css'
 
 
 export const App = () => {
 
 
-    return (
-        <div className='app'>
-            <div className='header'>
-                <Header/>
-            </div>
+  return (
+    <div className={s.background}>
+      <Header/>
 
-            <div className='left'>content for left side</div>
-            <div className='topleft'>
-                <Clock/>
-            </div>
-            <div className='logo'>
-                <TitleOfTable
-                    title={'your books are here'}
-                />
-            </div>
-            <div className='main'>
-                <AppRoutesComponent/>
-            </div>
-            <div className='favorites'>
-                <Genre title={'Show books by genre'}/>
-            </div>
+      <div className={s.main}>
+        <div className={s.right}>
+          <Genre title={'Show books by genre'}/>
         </div>
-    );
+        <div className={s.center}>
+          <AppRoutesComponent/>
+        </div>
+        <div className={s.left}>
+          ЧЕТО СЛЕВА
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default App;

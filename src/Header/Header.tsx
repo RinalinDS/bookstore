@@ -1,13 +1,22 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import s from './Header.module.css';
+import {Navigation} from './Navigation';
+import {Clock} from '../common/Clock';
 
 export const Header = () => {
-    return (
-        <nav>
-            <Link to="/">Main</Link> |{' '}
-            <Link to="/books">Books</Link> |{' '}
-            <Link to="/favorites">Favorites</Link>
-        </nav>
-    );
+  return (
+    <div className={s.header}>
+      <div className={s.title}>
+        <span> Your favorites are here</span>
+      </div>
+      <div className={s.nav}>
+        <Navigation/>
+      </div>
+      <div className={s.clock}>
+        <Clock/>
+      </div>
+    </div>
+
+  );
 };
 

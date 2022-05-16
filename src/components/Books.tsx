@@ -18,7 +18,6 @@ export const Books = React.memo(({addBookToFavorites, title}: propsType) => {
             <TitleOfTable title={title}/>
             {books.map(m => <Book key={m.id} id={m.id} title={m.title} callback={addBookToFavorites}/>
             )}
-
         </div>
     )
 })

@@ -1,0 +1,8 @@
+.genreContainer {
+    padding: 5px;
+}
+.buttonsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}

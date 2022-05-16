@@ -1,6 +1,6 @@
 import React, {useCallback} from 'react';
 import {Navigate, Route, Routes} from 'react-router-dom';
-import BookContainer from '../BookContainer';
+import BookContainer from '../components/BookContainer/BookContainer';
 import {Favorites} from '../components/Favorites/Favorites';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from '../store/store';
@@ -30,6 +30,9 @@ export const AppRoutesComponent = () => {
 
   return (
     <Routes>
+      <Route path={'/'} element={<h1>Welcome to your favorite place</h1>}/>
+      <Route path={'*'} element={<Navigate to={'/404'}/>}/>
+      <Route path={'bookstore'} element={<Navigate to={'/'}/>}/>
       <Route path={'/books'}
              element={<BookContainer addBookToFavorites={addBookToFavorites} addBook={addBook}
              />}/>
@@ -38,9 +41,7 @@ export const AppRoutesComponent = () => {
         deleteBookFromFavorites={deleteBookFromFavorites}
         clearFavorites={clearFavorites}
       />}/>
-      <Route path={'/'} element={<h1>Welcome to your favorite place</h1>}/>
-      <Route path={'/*'} element={<Navigate to={'404'}/>}/>
-      <Route path={'404'} element={<h1>SOMEONE FUCKED UP</h1>}/>
+      <Route path={'/404'} element={<h1>SOMEONE FUCKED UP</h1>}/>
     </Routes>
   );
 };
